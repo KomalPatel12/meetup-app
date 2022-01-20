@@ -1,0 +1,46 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="content-main">
+        <form>
+            <div class="connection-title"><%= conn.title %></div>
+            <div class="float-left">
+                <div class="float-left">
+                    <img class="connection-img" src="<%= conn.imageUrl %>" alt="Event-logo" />
+                </div>
+                <div class="float-left">
+                    <div>Hosted by <%= conn.host.firstName + " " +conn.host.lastName %></div>
+                    <div><%= conn.when %></div>
+                    <div><%= conn.start %> - <%= conn.end %></div>
+                    <div><%= conn.where %></div>
+                </div>
+                <div class="clear-float">
+                    <div>Details</div>
+                    <p><%= conn.detail %></p>
+                </div>
+            </div>
+            <div class = "float-left">
+            <% if(peopleGoing>0){ %>
+                <div class="float-left margin-left20"> <%= peopleGoing %> people are going </div>
+          <% } else { %>
+             <div class="float-left margin-left20">No RSVPs yet to the connection </div>
+          <% } %>
+               <br>
+            </div>
+            <%if(user == conn.host._id){%>
+            <div class="float-left margin-left20">
+                <button class="button" id="btnUpdate" type="submit" formmethod = "GET" formaction = "/connections/<%= conn.id %>/edit">Update </button>
+                <button class="button" id="btnDelete" type="submit" formmethod = "POST" formaction = "/connections/<%= conn.id %>?_method=DELETE">Delete</button>
+            </div>
+            <%} else{%>
+                <div class="float-left margin-left20">RSVP to attend!</div> <br>
+
+            <div class="float-left margin-left20">
+                <button class="button-yes" id="btnYes" type="submit" formmethod = "POST" formaction = "/connections/<%= conn._id %>/rsvp?status=yes">Yes </button>
+                <button class="button-no" id="btnNo" type="submit" formmethod = "POST" formaction = "/connections/<%= conn._id %>/rsvp?status=no">No</button>
+                <button class="button" id="btnMayBe" type="submit" formmethod = "POST" formaction = "/connections/<%= conn._id %>/rsvp?status=maybe">May be </button>
+            </div>
+            <%}%>
+        </form>
+    </div>
+
+   <%- include('../partials/footer.ejs') %>

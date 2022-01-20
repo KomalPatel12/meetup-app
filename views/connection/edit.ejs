@@ -1,0 +1,47 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="content-main">
+        <form method="POST" action = '/connections/<%= conn.id%>?_method=PUT'>
+            <div>
+                <label for="topic" class="content-label">Topic</label>
+                <input type="text" id="topic" class="content-textbox" name="topic" required  value="<%= conn.topic %>">
+            </div>
+            <div>
+                <label for="title" class="content-label">Title</label>
+                <input type="text" id="title" class="content-textbox" name="title" value="<%= conn.title %>" required>
+            </div>
+            <!-- <div>
+                <label for="host" class="content-label">Host</label>
+                <input type="text" id="host" class="content-textbox" name="host" value="<%= conn.host %>" required>
+            </div> -->
+
+            <div>
+                <label for="details" class="content-label vertical-align-top">Details</label>
+                <textarea rows="3" id="details" class="content-textbox" name="detail" required minlength="10"><%= conn.detail %></textarea>
+            </div>
+            <div>
+                <label for="where" class="content-label">Where</label>
+                <input type="text" id="where" class="content-textbox" name="where" value="<%= conn.where %>" required>
+            </div>
+            <div>
+                <label for="when" class="content-label">When</label>
+                <input type="date" id="when" class="content-textbox" name="when" value="<%= conn.when %>" required>
+            </div>
+            <div>
+                <label for="start" class="content-label">Start</label>
+                <input type="time" id="start" class="content-textbox" name="start" value="<%= conn.start %>" required>
+            </div>
+            <div>
+                <label for="end" class="content-label">End</label>
+                <input type="time" id="end" class="content-textbox" name="end" value="<%= conn.end %>" required>
+            </div>
+            <div>
+                <label for="imageUrl" class="content-label">Image URL</label>
+                <input type="text" id="imageUrl" class="content-textbox" name="imageUrl" value="<%= conn.imageUrl %>" required>
+            </div>
+            <br>
+            <button class="button" id="btnUpdate" >Update Connection</button>
+        </form>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>

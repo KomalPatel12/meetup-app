@@ -1,0 +1,22 @@
+<%- include('../partials/header.ejs') %>
+
+    <div class="content-main">
+        <%if(topicArray.length > 0){
+            for (let i=0; i < topicArray.length; i++){ %>
+                <div class="categories-title"> <%= topicArray[i] %></div>
+                <ul>
+                <% for(let j=0; j< connections.length; j++){
+                    if(connections[j].topic === topicArray[i]){ %>
+                        <li><a class="category-link" href="/connections/<%= connections[j].id %>">
+                            <%= connections[j].title %></a></li>
+                    <%
+                    }
+                } %>
+                </ul>
+          <%  }
+        } else{ %>
+            <p> There are no connections to display.</p>
+       <% } %>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>

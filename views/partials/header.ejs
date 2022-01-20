@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrepreneurs</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div>
+            <div class="float-left">
+                <a href="/">
+                    <img class="logo float-left" src="/images/logo.png" alt="Logo" />
+                </a>
+            </div>
+            <div class="float-right nav-main">
+                <ul>
+                    <%if(!user){%>
+                        <a class="nav-link" href='/users/new'>Sign Up</a>
+                        <a class="nav-link" href='/users/login'>Login</a>
+                    <%}
+                    else{%>
+                        
+                        <a class="nav-link" href="/connections/newConnection">Start a Connection</a>
+                        <a class="nav-link" href='/users/profile'>Profile</a>
+                        <a class="nav-link" href='/users/logout'>Logout</a></div>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+        <hr class="hr-line">
+        <div class="float-left">
+            <a class="nav-link" href="/connections">Connections</a>
+        </div>
+        <div class="float-right">&nbsp; &nbsp;&nbsp;</div>
+        <div class="float-right">
+            <%if(user && userName){ %>
+                Welcome, <%=userName%>
+                <%}%>
+        </div>
+    </header>
+
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='error'>
+                <%=message%>
+            </div>
+            <%});%>
+                <%}%>
+    
+    <% if(successMessages.length > 0) {%>
+    
+        <% successMessages.forEach(message=>{%>
+            <div class='success'>
+                <%=message%>
+                </div>
+                            <%});%>
+                                <%}%>

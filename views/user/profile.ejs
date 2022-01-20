@@ -1,0 +1,76 @@
+  <%- include('../partials/header.ejs')%>
+<div class = "content-main">
+    <h1>Welcome, <%= user.firstName%></h1>
+    <% if (topicNames.length>0) { %>
+        <p class="categories-title"> You have created the following connections</p><br/>
+    <div class = "profile-main">
+    <table class = 'profile-table'> 
+        <tr>
+            <th>Connections</th>
+            <th>Category</th>
+            <th>Actions</th>
+          </tr>
+    <% for(var i=0; i<topicNames.length; i++){ %>
+        <% for(var j=0; j<connections.length; j++){
+            if(connections[j].topic == topicNames[i]){
+                if(connections[j].host._id == user.id){
+                 %>
+                <tr>
+                    <td>
+                        <a href = '/connections/<%= connections[j].id%>'><%=connections[j].title%></a>
+                    </td>
+                    <td><%= topicNames[i]%></td>
+                    <td>
+                        <form>
+                            <button type="submit" class="button" formmethod = "GET" formaction="/connections/<%= connections[j].id%>/edit">Update</button>
+                            <button type="submit" class="button" formmethod = "POST" formaction="/connections/<%= connections[j].id%>?_method=DELETE">Delete</button>
+                        </form>
+                    </td>
+                    </tr>
+                <%}
+                }       
+            }%>
+    <%} %>
+</table>
+<%} else{ %>
+    <p class="categories-title"> You have not created any connections</p>
+<% } %>
+</div>
+
+<div class="profile-main">
+    <% if(rsvpArray.length){ %>
+     <div>
+         <p class="categories-title"> You have given RSVP response to following Events. </p>
+     </div>
+     <div class = "profile-main">
+        <table class = 'profile-table'> 
+             <tr>
+                 <th>Connections</th>
+                 <th>Category</th>
+                 <th>Going?</th>
+                 <th>Actions</th>
+             </tr>
+            <% rsvpArray.forEach(connection=>{ %>
+                 <tr>
+                     <td> <%= connection.connection.title %></td>
+                     <td><%= connection.connection.topic %></td>
+                     <td><%= connection.status %></td>
+                     <td>
+                         <form action="">
+                             <button type="submit" class="rsvp-btn-maybe button" formmethod="GET" formaction="/connections/<%= connection.connection._id %>">Update</button>
+                             <button id="rsvp-btn-maybe" class="rsvp-btn-no button" type="submit" formmethod="POST" formaction="/connections/<%= connection.connection._id %>/rsvp?_method=DELETE">Delete</button>
+                         </form>
+                     </td>
+                 </tr>
+            <% }); %>
+         </table>
+     <% }else{ %>
+         <p class="categories-title"> You have no RSVP to any events. </p>
+     <% } %>
+
+     </div>
+
+</div>
+ <%- include('../partials/footer.ejs')%>
+
+    

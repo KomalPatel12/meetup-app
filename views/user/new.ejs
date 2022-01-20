@@ -1,0 +1,33 @@
+
+<%- include('../partials/header.ejs')%>
+<div class = "content-main">
+    <form action = '/users' method = 'POST'>
+        <table>
+            <tr>
+                <td><label for="firstName" class="content-label">First Name</label></td>
+                <td><input type="text" class="content-textbox" id="firstName" name="firstName" minlength="3" required></td>
+            </tr>
+            <tr>
+                <td><label for="lastName" class="content-label">Last Name</label></td>
+                <td><input type="text" class="content-textbox" id="lastName" name="lastName" minlength="3" required></td>
+            </tr>
+
+            <tr>
+                <td><label for="email" class="content-label">Email Address</label></td>
+                <td><input type="email" class="content-textbox" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="password" class="content-label">Password</label></td>
+                <td><input type="password" class="content-textbox" id="password" name="password"  minlength="8" maxlength="64" required></td>
+            </tr>
+            
+            <tr>
+                <td colspan="2" class = "align-right"><button class="button">Sign Up</button></td>
+            </tr>
+        </table>        
+    </form>
+
+    </div>
+    <%- include('../partials/footer.ejs')%>
+
+
